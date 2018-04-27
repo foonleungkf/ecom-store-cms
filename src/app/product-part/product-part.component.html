@@ -1,0 +1,81 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+	        <button type="button" class="navbar-toggle">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar bar1"></span>
+	            <span class="icon-bar bar2"></span>
+	            <span class="icon-bar bar3"></span>
+	        </button>
+	        <a class="navbar-brand" href="#">Product</a>
+	    </div>
+    </div>
+</nav>
+
+<div class="content">
+	<div class="container-fluid">
+	<div class="row" style="margin-top: 20px;">
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="row">
+					<div class="col-lg-12 col-md-12" style="margin: 10px;">
+						<span style="font-size: 18px;">Tips : You can check Products of the Online Shop here</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="alert alert-success" style="display: none">
+	  <strong>Remove Success! </strong> Now reload the page...
+	</div>
+	<div class="alert alert-danger" style="display: none">
+	  <strong>Remove Failed! </strong> Please try again.
+	</div>
+	<div class="row" style="margin-top: 5px;">
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="row">
+					<div class="header">
+						<h4 class="title" style= "margin: 10px; line-height: 5px;">Products</h4>
+						<hr/>
+					</div>
+					<div class="col-lg-12 col-md-12">
+						 <table class="table table-striped">
+                                    <thead>
+                                        <th></th>
+                                    	<th>Image</th>
+                                    	<th>Product Name</th>
+                                    	<th>Price</th>
+                                    	<th>Qty</th>
+                                    	<th>Status</th>
+                                    	<th>Actions</th>
+                                    </thead>
+                                    <tbody>
+                                    	<tr *ngFor="let product of productList">
+                                        	<td><input type="checkbox" id="{{product.id}}" class="product_cb" value="{{product.id}}"/></td> 
+                                        	<td *ngIf="product.cover_image != null"><img class="img-thumbnail" style="height:100px; width:100px;" [src] = "imageUrl + product.cover_image"/></td>
+                                        	<td *ngIf="product.cover_image == null"><img class="img-thumbnail" style="height:100px; width:100px;"/></td>
+                                        	<td>{{product.name}}</td>
+                                        	<td>{{product.price}}</td>
+                                        	<td>{{product.qty}}</td>
+                                        	<td *ngIf="(product.active == 1)">Enabled</td>
+                                        	<td *ngIf="(product.active == 0)">Disabled</td>
+                                        	<td>
+                                        		<button class="btn btn-sm btn-dan btn-icon" (click)="moveToUpdateProductById(product.id)"><i class="fa fa-pencil"></i></button>
+                                        	</td>
+                                        </tr>
+                                    </tbody>
+                        </table>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-11 col-md-11" style="margin: 15px;">
+						<button class="btn btn-warning btn-fill" (click)="moveToAddProduct()"><i class="fa fa-plus"></i>Add Product</button>	
+						<button class="btn btn-danger btn-fill" (click)="removeProduct()"><i class="fa fa-remove"></i>Remove Product</button>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

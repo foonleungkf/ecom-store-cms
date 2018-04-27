@@ -1,0 +1,167 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+	        <button type="button" class="navbar-toggle">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar bar1"></span>
+	            <span class="icon-bar bar2"></span>
+	            <span class="icon-bar bar3"></span>
+	        </button>
+	        <a class="navbar-brand" href="#">Shop Setting</a>
+	    </div>
+    </div>
+</nav>
+
+<div class="content">
+    <div class="container-fluid">
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-lg-12 col-md-12">
+            <div class="card">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12" style="margin: 10px;">
+                        <span style="font-size: 18px;">Tips : You can update the online shop setting here.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="alert alert-success" style="display: none">
+    <strong>Update Success! </strong> Now reload the page...
+</div>
+<div class="alert alert-danger" style="display: none">
+    <strong>Update Failed! </strong> Missing Information or something go wrong. Please try again.
+</div>
+
+<div class="content">
+	<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-4 col-md-6">
+			<div class="card">
+				<div class="row">
+					<div class="header">
+						<h4 class="title" style= "margin: 10px; line-height: 5px;">Shop Logo</h4>
+					</div>
+					<div class="col-md-11">
+						<div class="content" style="text-align: center;"> 
+							<img class="img-thumbnail" style=" height: 180px; width: 200px;" [src]="imageUrl + shopInfo.shop_logo" name="shop_logo">			
+						</div>
+						<div class="text-center" style="margin-top: 10px; margin-bottom: 10px;">
+                            <form action = "http://127.0.0.1:8000/api/cms/shop/upload_logo" method='POST' enctype="multipart/form-data" id="upload_logo_form">
+                               <input type="file" id="logo_upload" name="logo" style="display: none" (change)="onChangeUploadLogo()" accept="image/*"/>
+                               <input name="id" type="hidden" value="1"> <!--need to remove-->
+	                           <button (click)="uploadLogo($event)" class="btn btn-info btn-fill btn-wd" ><i class="fa fa-image"></i>Upload Shop Logo</button>
+                            </form>
+	                        
+	                    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-5 col-md-6">
+			<div class="card">
+				<div class="row">
+					<div class="header">
+						<h4 class="title" style= "margin: 10px; line-height: 5px;">About Us</h4>
+					</div>
+				</div>
+				<div class="row">
+                    <div class="col-md-11 col-sm-11 col-xs-11">
+                        <div class="form-group text-center">
+                            <textarea rows="10" class="form-control border-input" placeholder="About Us" [(ngModel)]="shopInfo.shop_desc" name="shop_desc" style="margin: 15px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-12 col-md-12">
+                <div class="card">
+                	<div class="header">
+						<h4 class="title" style= "margin: 10px; line-height: 5px;">Basic Shop Information</h4>
+					</div>
+                    <div class="content">      
+                    	<form> 
+                    		<div class="row">
+                    			<div class="col-md-11">
+                    				<div class="form-group">
+                            			<label>Shop Name</label>
+                                		<input type="text" class="form-control border-input" [(ngModel)]="shopInfo.name" name="name" disabled>
+                               		</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group">
+                                        <label>Shop Email address</label>
+                                        <input type="text" class="form-control border-input" placeholder="e.g. shop@shop.com" [(ngModel)]="shopInfo.email" name="email">
+                                    </div>
+                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Country</label>
+                                        <select class="form-control border-input" [(ngModel)]="shopInfo.country" name="country">
+                                        	<option value="1">Hong Kong</option>
+                                        	<option value="2">China</option>
+                                        	<option value="3">Tai Wan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Currency</label>
+                                        <select class="form-control border-input" [(ngModel)]="shopInfo.currency" name="currency">
+                                        	<option value="1">HKD</option>
+                                        	<option value="2">RMB</option>
+                                        	<option value="3">TWD</option>
+                                        	<option value="4">USD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Contact Phone(if any)</label>
+                                            <input type="tel" class="form-control border-input" placeholder="+852-12345678" [(ngModel)]="shopInfo.contact_phone" name="contact_phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <textarea rows="5" class="form-control border-input" placeholder="Hong Kong Tuen Mun..." value="Mike" [(ngModel)]="shopInfo.contact_address" name="address"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Postal Code</label>
+                                        <input type="text" class="form-control border-input" placeholder="ZIP Code" [(ngModel)]="shopInfo.post_code" name="post_code">
+                                    </div>
+                                </div>
+                            </div>
+      						<div class="row">
+	                            <div class="text-center">
+	                                <button type="submit" class="btn btn-info btn-fill btn-wd" (click)="updateProfile($event)"><i class="fa fa-check"></i>Update Shop Profile</button>
+	                            </div>
+                        	</div>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+            	</div>
+        	</div>
+		</div>
+	</div>
+</div>

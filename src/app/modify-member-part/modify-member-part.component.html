@@ -1,0 +1,107 @@
+    <nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+	        <button type="button" class="navbar-toggle">
+	            <span class="sr-only">Toggle navigation</span>
+	            <span class="icon-bar bar1"></span>
+	            <span class="icon-bar bar2"></span>
+	            <span class="icon-bar bar3"></span>
+	        </button>
+	        <a class="navbar-brand" href="#">Members</a>
+	    </div>
+    </div>
+</nav>
+<div class="content">
+	<div class="container-fluid">
+	<div class="row" style="margin-top: 20px;">
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="row">
+					<div class="col-lg-12 col-md-12" style="margin: 10px;">
+						<span style="font-size: 18px;">Tips : You can modify the Members' Detail here (* represent must to input)</span>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="alert alert-success" style="display: none">
+      <strong>Update Success! </strong> Now reload the page...
+    </div>
+    <div class="alert alert-danger" style="display: none">
+      <strong>Update Failed! </strong> Missing Information or something go wrong. Please try again.
+    </div>
+    <div class="row">
+		<div class="col-lg-12 col-md-12">
+			<div class="card">
+				<div class="header">
+					<h4 class="title" style= "margin: 5px; line-height: 5px;">Member Information</h4>
+				</div>
+				<div class="row" style="margin-top: 30px; margin-left: 5px;">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control border-input" name="username" [(ngModel)]="memberInfo.username" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Password*</label>
+                            <input type="password" class="form-control border-input" name="password" [(ngModel)]="memberInfo.password">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Email*</label>
+                            <input type="text" class="form-control border-input" name="email" [(ngModel)]="memberInfo.email">
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Gender</label>
+                            <input type="text" class="form-control border-input" name="gender" *ngIf="memberInfo.gender == 1" value="Male" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-11">
+                        <div class="form-group">
+                            <label>Birth Date</label>
+                            <input type="text" class="form-control border-input" name="birth_date" [ngModel]="memberInfo.birth_date | date" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-11">
+                        <label>Member Account Status</label>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-left: 5px;">
+                	
+                    <div class="col-md-11 col-lg-11">
+                        <div class="form-group">
+                            <!-- Rounded switch -->
+							<label class="switch">
+                                <input type="checkbox" id="active" name="active" *ngIf="memberInfo.active == 1" checked>
+                                <input type="checkbox" id="active" name="active" *ngIf="memberInfo.active != 1" >
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+	                <div class="text-center">
+	                	<button type="submit" class="btn btn-info btn-fill btn-wd" style="margin-bottom: 10px;" (click)=updateMemberAccount($event)><i class="fa fa-check"></i>Update Product Type</button> 
+	                </div>
+                </div>
+			</div>
+		</div>
+	</div>
